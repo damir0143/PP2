@@ -1,66 +1,62 @@
-#1 Верните итератор из кортежа и распечатайте каждое значение:
-mytuple = ("apple", "banana", "cherry")
-myit = iter(mytuple)
+# 1. Iterators: iter() and next()
+nums = [1, 2, 3]
+it = iter(nums)
+print(next(it))
+print(next(it))
+print(next(it))
 
-print(next(myit))
-print(next(myit))
-print(next(myit))
+print("-----")
 
-#2 Строки также являются итерируемыми объектами, содержащими последовательность символов:
-mystr = "banana"
-myit = iter(mystr)
+# 2. Loop through an Iterator
+nums2 = [10, 20, 30]
+it2 = iter(nums2)
+for n in it2:
+    print(n)
 
-print(next(myit))
-print(next(myit))
-print(next(myit))
-print(next(myit))
-print(next(myit))
-print(next(myit))
+print("-----")
 
-#3 We can also use a for loop to iterate through an iterable object
-mytuple = ("apple", "banana", "cherry")
+# 3. Create an Iterator
+class Count:
+    def __init__(self, max):
+        self.max = max
+        self.current = 0
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if self.current < self.max:
+            self.current += 1
+            return self.current
+        raise StopIteration
 
-for x in mytuple:
-  print(x)
+for n in Count(5):
+    print(n)
 
-#4 Create an iterator that returns numbers, starting with 1, and each sequence will increase by one (returning 1,2,3,4,5 etc.):
-# Создайте итератор, который возвращает числа, начиная с 1, и каждая последовательность будет увеличиваться на единицу (возвращая 1,2,3,4,5 и т. д.):
-class MyNumbers:
-  def __iter__(self):
-    self.a = 1
-    return self
+print("-----")
 
-  def __next__(self):
-    x = self.a
-    self.a += 1
-    return x
+# 4. Generators: yield keyword
+def simple_gen():
+    yield 1
+    yield 2
+    yield 3
 
-myclass = MyNumbers()
-myiter = iter(myclass)
+g = simple_gen()
+print(next(g))
+print(next(g))
+print(next(g))
 
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
-print(next(myiter))
+print("-----")
 
-#5
-#Stop after 20 iterations:
-class MyNumbers:
-  def __iter__(self):
-    self.a = 1
-    return self
+# 5. Creating Generator Functions
+def squares(n):
+    for i in range(n):
+        yield i * i
 
-  def __next__(self):
-    if self.a <= 20:
-      x = self.a
-      self.a += 1
-      return x
-    else:
-      raise StopIteration
+for s in squares(5):
+    print(s)
 
-myclass = MyNumbers()
-myiter = iter(myclass)
+print("-----")
 
-for x in myiter:
-  print(x)
+# 6. Generator Expressions
+gen_expr = (x * x for x in range(5))
+for value in gen_expr:
+    print(value)
