@@ -42,3 +42,20 @@ import math
 x = math.pi
 
 print(x)
+
+import random
+
+# 7. random() — случайное число от 0 до 1
+print("random():", random.random())
+
+# 8. randint(a, b) — случайное целое число от a до b включительно
+print("randint(1, 10):", random.randint(1, 10))
+
+# 9. choice(seq) — случайный элемент из последовательности
+items = ['apple', 'banana', 'cherry']
+print("choice:", random.choice(items))
+
+# 10. shuffle(seq) — перемешивание списка на месте
+deck = [1, 2, 3, 4, 5]
+random.shuffle(deck)
+print("shuffled deck:", deck)
