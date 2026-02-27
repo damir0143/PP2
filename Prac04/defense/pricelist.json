@@ -1,0 +1,10 @@
+{
+    "selected_cars": [
+        {
+            "brand": "Toyota",
+            "model": "Camry",
+            "price": 30000
+        }
+    ],
+    "total_price": 30000
+}
