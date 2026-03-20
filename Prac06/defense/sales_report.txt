@@ -1,0 +1,9 @@
+Total records: 5
+Average quantity sold: 11.40
+Highest quantity sold: 28
+Lowest quantity sold: 2
+
+Popular products:
+Laptop 10
+Keyboard 13
+Mouse 28
