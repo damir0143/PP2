@@ -1,28 +1,24 @@
 import pygame
-import datetime
+from clock import MickeyClock 
 
-class MickeyClock:
-    def __init__(self, center_point):
-        self.center_point = center_point
-        self.bg = pygame.image.load('images/mickey_no_arms.png')
-        self.hand_min_img = pygame.image.load('images/mickey_right-hand.png')
-        self.hand_sec_img = pygame.image.load('images/mickey_left-hand.png')
+pygame.init()
+WIDTH, HEIGHT = 1245, 938
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Mickey's Clock")
 
-    def rotate_center(self, image, angle):
-        rotated_image = pygame.transform.rotate(image, angle)
-        new_rect = rotated_image.get_rect(center=self.center_point)
-        return rotated_image, new_rect
+my_clock = MickeyClock(center_point=(600, 450))
 
-    def draw(self, screen):
-        now = datetime.datetime.now()
-        
-        angle_sec = -(now.second * 6) - 32
-        angle_min = -(now.minute * 6) + 120
+running = True
+clock = pygame.time.Clock()
 
-        screen.blit(self.bg, (0, 0))
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-        img_min, rect_min = self.rotate_center(self.hand_min_img, angle_min)
-        img_sec, rect_sec = self.rotate_center(self.hand_sec_img, angle_sec)
+    my_clock.draw(screen)
 
-        screen.blit(img_min, rect_min)
-        screen.blit(img_sec, rect_sec)
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
